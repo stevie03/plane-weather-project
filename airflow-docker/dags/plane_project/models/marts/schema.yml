@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: dim_aircraft
+    description: "Planes with their unique ICAO24 identifier"
+    columns:
+      - name: aircraft_id
+        description: "Egyedi ICAO24 azonosító"
+        tests:
+          - unique    
+          - not_null  
+
+  - name: fct_flight_tracking
+    description: "Plane tracking data"
+    columns:
+      - name: aircraft_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_aircraft')
+              field: aircraft_id
+
+  - name: fct_weather
+    description: "downloaded weather data"
+    columns:
+      - name: city
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Budapest', 'London', 'Frankfurt', 'Parizs', 'Roma']

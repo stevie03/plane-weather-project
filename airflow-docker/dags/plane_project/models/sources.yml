@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw_data
+    description: "From the GCS bucket, read raw flight data"
+    schema: plane_datastorage
+    tables:
+      - name: ext_raw_flights
+        description: "RAW JSON file external table"
+
+      - name: ext_raw_weather
+        description: "raw weather data from GCS bucket"
+          
+      
